@@ -1,0 +1,116 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Cue Export",
+            "type": "shell",
+            "command": "cue export --out json $(grep -E 'package \\S+' ${file} | sed -E 's/package (.+)/:\\1/') > /tmp/cue.json || (bash -c \"read -p 'Press enter to continue'\" ; false) && code /tmp/cue.json",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": true,
+                "close": true
+            },
+            "problemMatcher": {
+                "owner": "cue",
+                "fileLocation": [
+                    "relative",
+                    "${fileDirname}"
+                ],
+                "pattern": [
+                    {
+                        "regexp": "^(\\S.+):",
+                        "message": 1
+                    },
+                    {
+                        "regexp": "^\\s+\\./([^:]+[.]cue):(\\d+):(\\d+)",
+                        "file": 1,
+                        "line": 2,
+                        "column": 3,
+                    },
+                ]
+            }
+        },
+        {
+            "label": "Cue Export File",
+            "type": "shell",
+            "command": "cue export --out json ${file}  > /tmp/cue.json || (bash -c \"read -p 'Press enter to continue'\" ; false) && code /tmp/cue.json",
+            "options": {
+                "cwd": "${fileDirname}",
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": true,
+                "close": true
+            },
+            "problemMatcher": {
+                "owner": "cue",
+                "fileLocation": [
+                    "relative",
+                    "${fileDirname}"
+                ],
+                "pattern": [
+                    {
+                        "regexp": "^(\\S.+):",
+                        "message": 1
+                    },
+                    {
+                        "regexp": "^\\s+\\./([^:]+[.]cue):(\\d+):(\\d+)",
+                        "file": 1,
+                        "line": 2,
+                        "column": 3,
+                    },
+                ]
+            }
+        },
+        {
+            "label": "Cue Format File",
+            "type": "shell",
+            "command": "cue fmt ${file}",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": true,
+                "close": false
+            },
+            "problemMatcher": {
+                "owner": "cue",
+                "fileLocation": [
+                    "relative",
+                    "${fileDirname}"
+                ],
+                "pattern": [
+                    {
+                        "regexp": "^(\\S.+):",
+                        "message": 1
+                    },
+                    {
+                        "regexp": "^\\s+\\./([^:]+[.]cue):(\\d+):(\\d+)",
+                        "file": 1,
+                        "line": 2,
+                        "column": 3,
+                    },
+                ]
+            }
+        },
+    ]
+}

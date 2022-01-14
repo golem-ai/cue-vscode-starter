@@ -1,0 +1,12 @@
+{
+  "name": "Cue",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "extensions": [
+    "ms-vscode-remote.remote-containers",
+    "nickgo.cuelang",
+    "spencerwmiles.vscode-task-buttons",
+    "gabrielgrinberg.auto-run-command"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "editor.formatOnSave": true,
+  "VsCodeTaskButtons.tasks": [
+    {
+      "label": "▶ Cue Export",
+      "task": "Cue Export",
+    },
+    {
+      "label": "▶ Cue Export File",
+      "task": "Cue Export File",
+    },
+    {
+      "label": "▶ Cue Format File",
+      "task": "Cue Format File",
+    },
+  ],
+  "auto-run-command.rules": [
+    {
+      "command": "workbench.action.terminal.new",
+    },
+  ],
+  "files.autoSave": "afterDelay"
+}
