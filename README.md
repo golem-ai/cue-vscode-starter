@@ -22,6 +22,8 @@ Yes, I trust the authors
 Trust folder and enable all features
 ```
 
+Make sure Docker is running on your computer.
+
 Press CMD+SHIFT+P and choose/run `Remote-Containers: Rebuild and Reopen in Container`.
 
 The `Startubg Dev Container` step might take a few minutes to pull the docker image.
