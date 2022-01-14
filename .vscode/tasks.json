@@ -6,7 +6,7 @@
         {
             "label": "Cue Export",
             "type": "shell",
-            "command": "cue export --out json $(grep -E 'package \\S+' ${file} | sed -E 's/package (.+)/:\\1/') > /tmp/cue.json || (bash -c \"read -p 'Press enter to continue'\" ; false) && code /tmp/cue.json",
+            "command": "echo ${fileExtname} | grep -E '^\\.cue$' || (bash -c \"read -p 'This task only works on .cue files, ${fileBasename} is not supported. Press enter to continue'\" ; false) && cue export --out json $(grep -E 'package \\S+' ${file} | sed -E 's/package (.+)/:\\1/') > /tmp/cue.json || (bash -c \"read -p 'Press enter to continue'\" ; false) && code /tmp/cue.json",
             "options": {
                 "cwd": "${fileDirname}"
             },
@@ -46,7 +46,7 @@
         {
             "label": "Cue Export File",
             "type": "shell",
-            "command": "cue export --out json ${file}  > /tmp/cue.json || (bash -c \"read -p 'Press enter to continue'\" ; false) && code /tmp/cue.json",
+            "command": "echo ${fileExtname} | grep -E '^\\.cue$' || (bash -c \"read -p 'This task only works on .cue files, ${fileBasename} is not supported. Press enter to continue'\" ; false) && cue export --out json ${file}  > /tmp/cue.json || (bash -c \"read -p 'Press enter to continue'\" ; false) && code /tmp/cue.json",
             "options": {
                 "cwd": "${fileDirname}",
             },
@@ -82,15 +82,15 @@
         {
             "label": "Cue Format File",
             "type": "shell",
-            "command": "cue fmt ${file}",
+            "command": "echo ${fileExtname} | grep -E '^\\.cue$' || (bash -c \"read -p 'This task only works on .cue files, ${fileExtname} is not supported. Press enter to continue'\" ; false) && cue fmt ${file}",
             "presentation": {
                 "echo": true,
-                "reveal": "silent",
+                "reveal": "always",
                 "focus": true,
                 "panel": "dedicated",
                 "showReuseMessage": true,
                 "clear": true,
-                "close": false
+                "close": true
             },
             "problemMatcher": {
                 "owner": "cue",
